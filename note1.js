@@ -21,7 +21,7 @@
                 confetti({
                     particleCount: 5,      // 한 번에 나오는 입자 수 (많으면 렉 걸림)
                     angle: 90,             // 발사 각도
-                    spread: 50,            // 퍼지는 범위
+                    spread: 360,            // 퍼지는 범위
                     origin: { x: xRatio, y: yRatio }, // 현재 마우스 위치
                     colors: ['#800080', '#ff00ff', '#ffffff'], // 색상 조합
                     ticks: 500,             // 입자가 살아있는 시간 (짧게 설정해서 깔끔하게)
