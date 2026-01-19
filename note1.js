@@ -12,21 +12,23 @@
     script.src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js";
     
     script.onload = () => {
-        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        setInterval(() => {
-            confetti({
-                particleCount: 200,    // 입자 개수 (중앙이라 좀 더 풍성하게)
-                spread: 360,           // 360도 전 방향으로 퍼짐
-                startVelocity: 45,     // 중앙에서 밖으로 밀어내는 힘 강화
-                gravity: 1,            // 중력 (1은 기본, 낮을수록 천천히 떨어짐)
-                ticks: 200,            // 입자가 사라지기 전까지 유지되는 시간
-                origin: { 
-                    x: 0.5,            // 뷰포트 가로 중앙 (50%)
-                    y: 0.5             // 뷰포트 세로 중앙 (50%)
-                },
-                colors: ['#800080', '#ff00ff', '#ffffff', '#ffeb3b'] // 아카마이 테마 컬러(보라)와 포인트 컬러
+        document.addEventListener('mousemove', (e) => {
+                // 마우스 좌표를 뷰포트 비율(0~1)로 변환
+                const xRatio = e.clientX / window.innerWidth;
+                const yRatio = e.clientY / window.innerHeight;
+    
+                // 아주 적은 양의 입자를 계속해서 발사
+                confetti({
+                    particleCount: 2,      // 한 번에 나오는 입자 수 (많으면 렉 걸림)
+                    angle: 90,             // 발사 각도
+                    spread: 50,            // 퍼지는 범위
+                    origin: { x: xRatio, y: yRatio }, // 현재 마우스 위치
+                    colors: ['#800080', '#ff00ff', '#ffffff'], // 색상 조합
+                    ticks: 50,             // 입자가 살아있는 시간 (짧게 설정해서 깔끔하게)
+                    gravity: 0.5,          // 중력 (낮을수록 가볍게 떠오름)
+                    scalar: 0.7            // 입자 크기
+                });
             });
-        }, 3000);
     };
 
     document.head.appendChild(script);
