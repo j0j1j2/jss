@@ -15,10 +15,16 @@
         confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
         setInterval(() => {
             confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff0000', '#00ff00', '#0000ff'] // 색상 커스텀 가능
+                particleCount: 200,    // 입자 개수 (중앙이라 좀 더 풍성하게)
+                spread: 360,           // 360도 전 방향으로 퍼짐
+                startVelocity: 45,     // 중앙에서 밖으로 밀어내는 힘 강화
+                gravity: 1,            // 중력 (1은 기본, 낮을수록 천천히 떨어짐)
+                ticks: 200,            // 입자가 사라지기 전까지 유지되는 시간
+                origin: { 
+                    x: 0.5,            // 뷰포트 가로 중앙 (50%)
+                    y: 0.5             // 뷰포트 세로 중앙 (50%)
+                },
+                colors: ['#800080', '#ff00ff', '#ffffff', '#ffeb3b'] // 아카마이 테마 컬러(보라)와 포인트 컬러
             });
         }, 3000);
     };
